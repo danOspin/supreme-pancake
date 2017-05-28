@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Autómata celular</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script language="javascript1.5" src="js/javascript.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<link rel="stylesheet" type="text/css" href="css/tabla.css">
+
+</head>
+
+<body>
+
+	<div id="innerForm"> <!-- se ponen todos esos campos dentro de inner form en caso de necesitar ocultar después de ingresar datos -->
+			<div>Ingrese número de filas</div>	
+			<input id="filas" name="filas" type="" name="">
+
+			<div>Ingrese número de Columnas</div>	
+			<input id="columnas" name="columnas" type="" name="">
+
+			<div>Ingrese número de vecinos</div>	
+			<input id="vecinos" name="vecinos" type="" name="">
+
+			<div>Ingrese número de Estados</div>	
+			<input id="estados" name="estados" type="" name="">
+
+			<div>Circular o con frontera (Si no se selecciona, quedará circular)</div>	
+			<input id="frontera" name="frontera" type="checkbox" name="">
+
+			<!-- si se oprime mas de una vez este botón, creará más tablas -->
+			<button id="accion" name="accion">Crear Tabla</button>
+	</div>
+
+
+	<table class="table">
+		<tbody>
+		<!--<tr> estructura de la tabla
+			<th class="clickable1" id="tabla">December 2013</th>
+			<th class="title">Title</th>
+			<th>Speaker</th>
+		</tr>-->
+		</tbody>
+	</table>
+		
+
+
+</body>
+</html>

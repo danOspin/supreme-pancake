@@ -1,0 +1,32 @@
+.table{
+	font-family: Arial, sans-serif;
+	width: 55%;
+	border-collapse: collapse;
+	margin-top: 55px;
+	margin-left: 300px;
+}
+
+.table td, th {
+	font-size: 1em;
+	padding: 7px 7px 2px 3px;
+}
+
+.table th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #007cd9;
+	color: #ffffff;
+}
+
+.table tr.alt td {
+	color: #000000;
+	background-color: #e4e4eb;
+}
+
+.clickable1, .clickable2, .clickable3, .clickable4 {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
