@@ -23,6 +23,7 @@
 .table tr.alt td {
 	color: #000000;
 	background-color: #e4e4eb;
+	border: 1px;
 }
 
 .clickable1, .clickable2, .clickable3, .clickable4 {

@@ -4,38 +4,79 @@
 
 	<meta charset="utf-8">
 	<title>Autómata celular</title>
-	
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script language="javascript1.5" src="js/javascript.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<link rel="stylesheet" type="text/css" href="css/tabla.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
+	<!--action="/action_page.php"-->
+	<div class="container">
+	  <h2>Automata celular</h2>
+	  <form class="form-horizontal">
 
-	<div id="innerForm"> <!-- se ponen todos esos campos dentro de inner form en caso de necesitar ocultar después de ingresar datos -->
-			<div>Ingrese número de filas</div>	
-			<input id="filas" name="filas" type="" name="">
 
-			<div>Ingrese número de Columnas</div>	
-			<input id="columnas" name="columnas" type="" name="">
+	    <div class="form-group">
+	      <label class="control-label col-sm-1">Filas:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="filas" placeholder="Ingrese número de filas" name="filas">
+	      </div>
+	      <label class="control-label col-sm-1">Columnas:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="columnas" placeholder="Ingrese número de Columnas" name="columnas">
+	      </div>
+	      <label class="control-label col-sm-1">Radio de vecinos:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="vecinos" placeholder="Ingrese número de Columnas" name="vecinos">
+	      </div>
+	    </div>
 
-			<div>Ingrese número de vecinos</div>	
-			<input id="vecinos" name="vecinos" type="" name="">
 
-			<div>Ingrese número de Estados</div>	
-			<input id="estados" name="estados" type="" name="">
 
-			<div>Circular o con frontera (Si no se selecciona, quedará circular)</div>	
-			<input id="frontera" name="frontera" type="checkbox" name="">
+	   <div class="form-group">
+	      
+	      <label class="control-label col-sm-1">Número de estados:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="estados" placeholder="Ingrese número de Columnas" name="estados">
+	      </div>
 
-			<!-- si se oprime mas de una vez este botón, creará más tablas -->
-			<button id="accion" name="accion">Crear Tabla</button>
+		<label class="control-label col-sm-1">Clave a convertir:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="clave" placeholder="Ingrese número de Columnas" name="clave">
+	      </div>
+			
+		<label class="control-label col-sm-1">Número de iteraciones:</label>
+	      <div class="col-sm-2">
+	        <input class="form-control" id="iteraciones" placeholder="''=infinito" name="iteraciones">
+	      </div>
+	    </div>
+
+
+	    </div>
+
+	    <div class="form-group">
+	      
+	    <div class="form-group">        
+	      <div class="col-sm-offset-5 col-sm-2">
+	        <div class="checkbox">
+	          <label><input type="checkbox" name="frontera" id="frontera"> ¿Con frontera?</label>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="form-group">        
+	      <div class="col-sm-offset-5 col-sm-10">
+	        <button type="button" class="btn btn-default" id="accion" name="accion" onclick="cancelar()">Crear Tabla</button>
+	      </div>
+	    </div>
+	  </form>
 	</div>
 
-
-	<table class="table">
+	<table class="table" border="1">
 		<tbody>
 		<!--<tr> estructura de la tabla
 			<th class="clickable1" id="tabla">December 2013</th>
