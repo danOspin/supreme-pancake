@@ -41,71 +41,59 @@ $(function()
     var crearTabla = function()
     {
     	//EXTRAIGO VALORES INGRESADOS.
-				var filas = $("#filas").val();
-				var columnas = $("#columnas").val();
-				var vecinos = $("#vecinos").val();
+				var filas = parseInt($("#filas").val());
+				var columnas = parseInt($("#columnas").val());
+				var vecinos = parseInt($("#vecinos").val());
 				//alert(vecinos);
 				
 				//VERIFICO SI HARÁ FRONTERA O SERÁ CIRCULAR
 				if ($('#frontera').is(":checked"))
 				{
-					/*AQUÍ le sumo los nuevos vecinos que necesito para crear la frontera.
-					y aquí empieza el desmadre*/
-					var filas2=filas+(2*vecinos);
-					//PRIMER CICLO PARA CREAR FILAS.
-					for (var i = 0; i < filas2; i++) 
-					{
-						/*Creo una variable posfila, para que cuando le ponga nombre a la casilla final, 
-						esta empieza desde 1 y no desde 0 (y evitar la confusión si decimos pos[6][5] y
-						resulta que estemos en la pos [5][4], porque empezaba en 0)
-						No, no afecta a la creación de la tabla, porque ese número estará en el 
-						id no en la posición de la tabla.
-						*/
-						var posfila= i+1+"";
+					filas=(filas+(2*vecinos));
+					columnas=(columnas+(2*vecinos));
 
-						/*Creo la etiqueta fila, pero no se verá en pantalla hasta que le asigne 
-						una columna dentro de ella*/
-						var codeRow = "<tr id="+posfila+"></tr>";
-						//Aquí la añado al HTML.
-						$(".table tbody").append(codeRow);
-
-						//INICIO OTRO CICLO, ESTA VEZ PARA CREAR LAS COLUMNAS, nuevamente añado los vecinos
-						var columnas2 = columnas+(2*vecinos);
-						for (var j = 0; j < columnas2; j++) 
-						{
-							/*nuevamente hago otra variable, para que identifiquemos desde la posición [1][1]
-							en vez de [0][0]*/
-							var posColum = j+1+"";
-							//Creo la columna y la añado a la fila que estamos recorriendo actualmente.
-							var codeColum = "<td class='clickable1' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
-							$("#"+posfila).append(codeColum);
-						}
-						
-					}
-
-			
+					iterarTabla(filas,columnas,true,vecinos);
 				}
 
 				//AQUÍ ES CUANDO ES CIRCULAR Y NO NECESITA CREAR FRONTERA. AQUÍ EXTRAÑAMENTE FUNCIONA BIEN.
 				else
 				{
-					for (var i = 0; i < filas; i++) 
+					iterarTabla(filas,columnas,false,vecinos);	
+				}
+    
+    }
+    var iterarTabla = function(filas1,columnas1, checked,vecinos)
+    {
+    	for (var i = 0; i < filas1; i++) 
 					{
-
 						var posfila= i+1+"";
 						var codeRow = "<tr id="+posfila+"></tr>";
 						$(".table tbody").append(codeRow);
-						for (var j = 0; j < columnas; j++) 
+						for (var j = 0; j < columnas1; j++) 
 						{
 							var posColum = j+1+"";
-							var codeColum = "<td class='clickable1' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
+							if (esFrontera(i,j, filas1,columnas1,vecinos) && checked)
+							{
+							var codeColum = "<td class='clickable2' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
+							}
+							else
+								var codeColum = "<td class='clickable1' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
+							
 							$("#"+posfila).append(codeColum);
 						}
 						
 					}
-
-				}
     }
+
+    var esFrontera = function(i,j, filas,columnas,vecinos)
+    {
+    	if ((j<vecinos || i<vecinos) || (j>=(columnas-vecinos) || i>=(filas-vecinos)))
+    	{
+    		return true;
+    	}
+
+    }
+
 
 
 });
