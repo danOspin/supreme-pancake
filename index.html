@@ -24,15 +24,15 @@
 	    <div class="form-group">
 	      <label class="control-label col-sm-1">Filas:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="filas" placeholder="Ingrese número de filas" name="filas">
+	        <input class="form-control" id="filas" placeholder="Ingrese número de filas" name="filas" value="5">
 	      </div>
 	      <label class="control-label col-sm-1">Columnas:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="columnas" placeholder="Ingrese número de Columnas" name="columnas">
+	        <input class="form-control" id="columnas" placeholder="Ingrese número de Columnas" name="columnas" value="4">
 	      </div>
 	      <label class="control-label col-sm-1">Radio de vecinos:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="vecinos" placeholder="Ingrese número de Columnas" name="vecinos">
+	        <input class="form-control" id="vecinos" placeholder="Ingrese número de Columnas" name="vecinos" value="3">
 	      </div>
 	    </div>
 
@@ -42,17 +42,17 @@
 	      
 	      <label class="control-label col-sm-1">Número de estados:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="estados" placeholder="Ingrese número de Columnas" name="estados">
+	        <input class="form-control" id="estados" placeholder="Ingrese número de Columnas" name="estados" value="2">
 	      </div>
 
 		<label class="control-label col-sm-1">Clave a convertir:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="clave" placeholder="Ingrese número de Columnas" name="clave">
+	        <input class="form-control" id="clave" placeholder="Ingrese número de Columnas" name="clave" value="12">
 	      </div>
 			
 		<label class="control-label col-sm-1">Número de iteraciones:</label>
 	      <div class="col-sm-2">
-	        <input class="form-control" id="iteraciones" placeholder="''=infinito" name="iteraciones">
+	        <input class="form-control" id="iteraciones" placeholder="''=infinito" name="iteraciones" value="3">
 	      </div>
 	    </div>
 
@@ -72,11 +72,14 @@
 	      <div class="col-sm-offset-5 col-sm-10">
 	        <button type="button" class="btn btn-default" id="accion" name="accion" onclick="cancelar()">Crear Tabla</button>
 	      </div>
+	      <div class="col-sm-offset-5 col-sm-10">
+	        <button type="button" class="btn btn-default" id="borrar" name="borrar" onclick="cancelar()">borrar Tabla</button>
+	      </div>
 	    </div>
 	  </form>
 	</div>
 
-	<table class="table" border="1">
+	<table class="table" id="table" border="1">
 		<tbody>
 		<!--<tr> estructura de la tabla
 			<th class="clickable1" id="tabla">December 2013</th>

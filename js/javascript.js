@@ -10,9 +10,15 @@ $(function()
      myFunc();
 
 	*/
+	var tablaCreada =false;
+	$(document).on('click', '#borrar', function(){
+    				borrar();
+    			});
+	/*$("#accion").on("click", function(event)
+		{
 
-
-
+			borrar();
+		});*/
 	//AQUÍ ES DONDE EMPIEZA LA ACCIÓN
 	$("#accion").on("click", function(event)
 	{
@@ -38,48 +44,69 @@ $(function()
     				alert($('.clickable1').attr('id'));
     });*/
 
+    var borrar = function() 
+	{
+		var filas = $('#table tr').length;
+		alert("borraré"+filas);
+		for (i = 0; i<filas; i++)
+		{
+	   		$("#fila"+i).remove();
+		}
+	}
+
     var crearTabla = function()
     {
     	//EXTRAIGO VALORES INGRESADOS.
+    		
 				var filas = parseInt($("#filas").val());
 				var columnas = parseInt($("#columnas").val());
 				var vecinos = parseInt($("#vecinos").val());
 				//alert(vecinos);
-				
+			
 				//VERIFICO SI HARÁ FRONTERA O SERÁ CIRCULAR
 				if ($('#frontera').is(":checked"))
 				{
 					filas=(filas+(2*vecinos));
 					columnas=(columnas+(2*vecinos));
-
+						if (tablaCreada)
+			    		{
+			    			borrar();
+			    		}
 					iterarTabla(filas,columnas,true,vecinos);
 				}
 
 				//AQUÍ ES CUANDO ES CIRCULAR Y NO NECESITA CREAR FRONTERA. AQUÍ EXTRAÑAMENTE FUNCIONA BIEN.
 				else
 				{
+					if (tablaCreada)
+			    	{
+			    		borrar();
+			    	}
 					iterarTabla(filas,columnas,false,vecinos);	
 				}
-    
+				tablaCreada=true;
     }
+
     var iterarTabla = function(filas1,columnas1, checked,vecinos)
     {
     	for (var i = 0; i < filas1; i++) 
 					{
-						var posfila= i+1+"";
-						var codeRow = "<tr id="+posfila+"></tr>";
+						var posfila= i;
+						var codeRow = "<tr id=fila"+posfila+"></tr>";
 						$(".table tbody").append(codeRow);
+
 						for (var j = 0; j < columnas1; j++) 
 						{
-							var posColum = j+1+"";
+							var posColum = j;
+
 							if (esFrontera(i,j, filas1,columnas1,vecinos) && checked)
 							{
-							var codeColum = "<td class='clickable2' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
+							var codeColum = "<td class='clickable2' onclick='clickEstado(this)' id="+i+""+j+">0</td>";
 							}
 							else
-								var codeColum = "<td class='clickable1' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
+							var codeColum = "<td class='clickable1' onclick='clickEstado(this)' id="+posfila+""+posColum+">0</td>";
 							
-							$("#"+posfila).append(codeColum);
+							$("#fila"+posfila).append(codeColum);
 						}
 						
 					}
@@ -101,10 +128,12 @@ $(function()
 function clickEstado(x) {
     //alert("Row index is: " + x.id);
     var estado = document.getElementById("estados");
+    var clave = document.getElementById("clave");
     var numEstado = parseInt(estado.value);
     cambiarValor(x,numEstado);
-    var convertido = dec2bin(16,numEstado);
-    alert(convertToArray(convertido));
+    var convertido = dec2bin(clave,numEstado);
+    alert("Clave en arreglo"+convertToArray(convertido));
+    //alert("Clave en arreglo"+convertToArray(convertido));
 }
 //TODO: una vez ingrese un id, verificar que posición de estado pertenece y cambiar al estado siguiente.
 function cambiarValor(x,numEstado)
@@ -120,10 +149,11 @@ function cambiarValor(x,numEstado)
 
 function borrarTabla() 
 {
-	var x = document.getElementById("myTable").rows.length;	
+	var x = document.getElementById("table").rows.length;	
+	alert(x);
 	for (i = 0; i<x; i++)
 	{
-    document.getElementById("myTable").deleteRow(i);
+    document.getElementById("table").deleteRow(i);
 	}
 }
 
